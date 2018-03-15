@@ -1,0 +1,45 @@
+.profile-card {  
+  font-size: 14px;
+  margin: 0 auto;
+}
+
+.profile-card .profile-pic {
+  width: 250px;
+  height: 250px;  
+  border-radius: 5px;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.profile-card.container .profile-pic.section {
+  border: 1px solid transparent;
+}
+
+.profile-card .profile-pic .profile-img {
+  width: 250px;
+  height: auto;
+}
+
+.bio-container .user-name {
+  font-size: 24px;
+  font-weight: bold;
+  color: #000;
+}
+
+.bio-container .user-id {
+  font-size: 20px;
+}
+
+.bio-container .user-bio {
+  margin-top: 10px;
+}
+
+.contact-container .user-company,
+.contact-container .user-location, 
+.contact-container .user-website {
+  display: block;
+  padding: 5px 0;
+}
+.contact-container .user-website {
+  color: #0366d6;
+}

@@ -1,0 +1,22 @@
+.repos-list {
+  margin: 0 auto;
+}
+
+.repos-list .repos-heading {
+  color: #000;
+  font-size: 20px;
+  margin: 5px 0 0 0;
+  text-decoration: underline;
+  text-decoration-color: #e36209;
+  
+}
+.repos-list .repos-list-item .repo-name {
+  text-decoration: none;
+  color: #0366d6;
+  font-size: 20px;
+  font-weight: 600;  
+}
+
+.repos-list .repos-list-item .repo-description {
+  margin-top: 10px;
+}

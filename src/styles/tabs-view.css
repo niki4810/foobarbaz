@@ -1,0 +1,14 @@
+.tabs-view {
+  padding: 5px;
+  margin: 0 auto;
+}
+
+.tabs-view .tab {
+  padding: 10px;
+  vertical-align: middle;
+  border-bottom: 2px solid #eaecef;
+}
+
+.tabs-view .tab.active {
+  border-bottom: 2px solid #ff1493;
+}
