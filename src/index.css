@@ -12,6 +12,13 @@ body {
   color: #666;
 }
 
+/* Common css utils */
+@media (min-width:768px) {
+  .bordered-box {
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
+  }
+}
+
 .display-block {
   display: block;
 }

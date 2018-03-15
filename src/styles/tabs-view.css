@@ -1,12 +1,13 @@
 .tabs-view {
   padding: 5px;
-  margin: 0 auto;
+  margin: 0 auto 10px auto;
 }
 
 .tabs-view .tab {
   padding: 10px;
   vertical-align: middle;
   border-bottom: 2px solid #eaecef;
+  cursor: pointer;
 }
 
 .tabs-view .tab.active {

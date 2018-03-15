@@ -4,13 +4,11 @@ import { connect } from "react-redux";
 import isEmpty from "lodash/isEmpty";
 
 const ProfileCard = (props) => {
-  const { userDetails, className } = props;
-  if(isEmpty(userDetails)) {
-    return (<div className={`profile-card container ${className}`}></div>)
-  }
+  const { userDetails, className, displayMode} = props;
+  if(displayMode !== "OVERVIEW") return null;
   const { avatar_url, name, login, bio, company, location, blog } = userDetails;
   return (
-    <div className={`profile-card container ${className}`}>
+    <div className={`profile-card bordered-box container ${className}`}>
       <div className="profile-pic section">
         <img className="profile-img" src={avatar_url} />
       </div>
@@ -22,16 +20,17 @@ const ProfileCard = (props) => {
       <div className="contact-container section">
         <div className="user-company">{company}</div>
         <div className="user-location">{location}</div>
-        <a className="user-website">{blog}</a>
+        <a className="user-website" href={blog}>{blog}</a>
       </div>
     </div>
   );
 };
 
 export default connect(({ selected, userDetails }) => {
-  const { userName } = selected;
+  const { userName , displayMode } = selected;
   const _userDetails = userDetails[userName];
   return {
-   userDetails: _userDetails
+   userDetails: _userDetails,
+   displayMode
   };
 })(ProfileCard);
