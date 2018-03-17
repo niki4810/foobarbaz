@@ -3,6 +3,8 @@ import ProfileCard from "./profile-card";
 import RepoList from "./repos-list";
 import SearchBox from "./search-box";
 import TabsView from "./tabs-view";
+import Spinner from "./spinner";
+
 import '../styles/app.css';
 
 const repos = [{
@@ -14,7 +16,7 @@ const repos = [{
     "id": 35351287,
     "name": "Blogger",
     "html_url": "https://github.com/niki4810/Blogger",
-    "description": "A simple blogging app using Node"    
+    "description": "A simple blogging app using Node"
 }];
 
 const userDetails = {
@@ -50,13 +52,14 @@ const userDetails = {
   "updated_at": "2018-03-15T02:27:42Z"
 };
 class App extends Component {
-  render() {   
+  render() {
     return (
-      <div className="app">                
+      <div className="app">
         <SearchBox className="app-section"/>
         <TabsView className="app-section" />
         <ProfileCard className="app-section"/>
         <RepoList className="app-section"/>
+        <Spinner/>
       </div>
     );
   }

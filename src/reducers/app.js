@@ -1,7 +1,8 @@
 export const INITIAL_STATE = {
   selected: {
     userName: "",
-    displayMode: "INIT"
+    displayMode: "INIT",
+    pageStatus: "FETCH_INIT"
   },
   repos: {},
   userDetails: {}
@@ -18,11 +19,19 @@ export const root = (state = INITIAL_STATE, action) => {
       return Object.assign({}, state, { selected: { userName: action.userName, displayMode: "OVERVIEW" } });
     }
     case "FETCH_USER_DETAILS": {
-      return Object.assign({}, state, { selected: { userName: action.userName, displayMode: "INIT" } });
+      return Object.assign({}, state, { selected: {
+        userName: action.userName,
+        displayMode: "INIT",
+        pageStatus: "FETCH_PENDING"
+      }});
     }
     case "ON_USER_DETAILS_FETCH": {
       return Object.assign({},state, {
-        selected: Object.assign({}, state.selected, { userName: action.userName , displayMode: "OVERVIEW" }),
+        selected: Object.assign({}, state.selected, {
+          userName: action.userName ,
+          displayMode: "OVERVIEW",
+          pageStatus: "FETCH_COMPLETE"
+        }),
         repos: Object.assign({}, state.repos, { [action.userName]: action.repos }),
         userDetails: Object.assign({}, state.userDetails, { [action.userName]: action.userDetails })
       });
