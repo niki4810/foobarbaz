@@ -20,6 +20,7 @@ export const selected = (state = INITIAL_STATE.selected, action) => {
     case "UPDATE_SELECTED_USER": {
       return Object.assign({}, state, { userName: action.userName, displayMode: "OVERVIEW" });
     }
+    case "FETCH_USER_REPOS":
     case "FETCH_USER_DETAILS": {
       return Object.assign({}, state, {
         userName: action.userName,
@@ -27,6 +28,15 @@ export const selected = (state = INITIAL_STATE.selected, action) => {
         pageStatus: "FETCH_PENDING"
       });
     }
+
+    case "ON_USER_REPOS_FETCH": {
+      return Object.assign({}, state, {
+        userName: action.userName ,
+        displayMode: "REPOS",
+        pageStatus: "FETCH_COMPLETE"
+      });
+    }
+
     case "ON_USER_DETAILS_FETCH": {
       return Object.assign({}, state, {
         userName: action.userName ,
@@ -41,7 +51,7 @@ export const selected = (state = INITIAL_STATE.selected, action) => {
 
 export const repos = (state = INITIAL_STATE.repos, action ) => {
   switch (action.type) {
-    case "ON_USER_DETAILS_FETCH": {
+    case "ON_USER_REPOS_FETCH": {
       return Object.assign({}, state, { [action.userName]: action.repos })
     }
     default :
