@@ -1,11 +1,17 @@
 import React from "react";
 import { connect } from "react-redux";
+import isEmpty from "lodash/isEmpty";
+import {
+  FETCH_USER_REPOS,
+  UPDATE_DISPLAY_MODE  
+} from "../actions";
 import "../styles/tabs-view.css";
 
 const tabs = [{ id: "OVERVIEW", name: "Overview" }, { id: "REPOS", name: "Repositories"}];
 
 const TabsView = (props) => {
-  const { userName = "", displayMode = "INIT", changeDisplayMode } = props;
+  const {selected = {}, repos ={}, changeDisplayMode} = props;
+  const { userName = "", displayMode = "INIT" } = selected;
   if (displayMode === "INIT") return null;
 
   return (
@@ -17,7 +23,8 @@ const TabsView = (props) => {
           onClick={(ev) => {
             changeDisplayMode({
               displayMode: ev.target.dataset.tabId,
-              userName
+              userName,
+              repos
             });
           }}
           className={`tab ${activeClass} display-inline-block`}
@@ -27,19 +34,15 @@ const TabsView = (props) => {
   );
 };
 
-export default connect(({selected}) => {
-  return selected
+export default connect(({selected, repos}) => {
+  return { selected, repos }
 }, (dispatch) => {
   return {
-    changeDisplayMode: ({displayMode, userName}) => {
-      console.log(displayMode);
-      switch (displayMode) {
-        case "REPOS":
-          return dispatch({ type: "FETCH_USER_REPOS", displayMode, userName })
-        default:
-          return dispatch({ type: "UPDATE_DISPLAY_MODE", displayMode, userName })
+    changeDisplayMode: ({displayMode, userName, repos}) => {
+      if(displayMode === "REPOS" && isEmpty(repos[userName])) {
+        return dispatch({ type: FETCH_USER_REPOS, displayMode, userName });
       }
-
+      return dispatch({ type: UPDATE_DISPLAY_MODE, displayMode, userName });
     }
   }
 })(TabsView);

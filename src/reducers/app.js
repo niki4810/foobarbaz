@@ -1,4 +1,12 @@
 import { combineReducers } from 'redux'
+import {
+  UPDATE_DISPLAY_MODE,
+  UPDATE_SELECTED_USER,
+  FETCH_USER_REPOS,
+  ON_USER_REPOS_FETCH,
+  FETCH_USER_DETAILS,
+  ON_USER_DETAILS_FETCH
+} from "../actions";
 
 export const INITIAL_STATE = {
   selected: {
@@ -12,16 +20,23 @@ export const INITIAL_STATE = {
 
 export const selected = (state = INITIAL_STATE.selected, action) => {
   switch(action.type) {
-    case "UPDATE_DISPLAY_MODE": {
+    case UPDATE_DISPLAY_MODE: {
       return Object.assign({}, state, {
         displayMode: action.displayMode
       });
     }
-    case "UPDATE_SELECTED_USER": {
+    case UPDATE_SELECTED_USER: {
       return Object.assign({}, state, { userName: action.userName, displayMode: "OVERVIEW" });
     }
-    case "FETCH_USER_REPOS":
-    case "FETCH_USER_DETAILS": {
+    case FETCH_USER_REPOS: {
+      return Object.assign({}, state, {
+        userName: action.userName,
+        displayMode: "REPOS",
+        pageStatus: "FETCH_PENDING"
+      });
+    }
+
+    case FETCH_USER_DETAILS: {
       return Object.assign({}, state, {
         userName: action.userName,
         displayMode: "INIT",
@@ -29,7 +44,7 @@ export const selected = (state = INITIAL_STATE.selected, action) => {
       });
     }
 
-    case "ON_USER_REPOS_FETCH": {
+    case ON_USER_REPOS_FETCH: {
       return Object.assign({}, state, {
         userName: action.userName ,
         displayMode: "REPOS",
@@ -37,7 +52,7 @@ export const selected = (state = INITIAL_STATE.selected, action) => {
       });
     }
 
-    case "ON_USER_DETAILS_FETCH": {
+    case ON_USER_DETAILS_FETCH: {
       return Object.assign({}, state, {
         userName: action.userName ,
         displayMode: "OVERVIEW",
@@ -51,7 +66,7 @@ export const selected = (state = INITIAL_STATE.selected, action) => {
 
 export const repos = (state = INITIAL_STATE.repos, action ) => {
   switch (action.type) {
-    case "ON_USER_REPOS_FETCH": {
+    case ON_USER_REPOS_FETCH: {
       return Object.assign({}, state, { [action.userName]: action.repos })
     }
     default :
@@ -61,7 +76,7 @@ export const repos = (state = INITIAL_STATE.repos, action ) => {
 
 export const userDetails = (state=INITIAL_STATE.userDetails, action) => {
   switch (action.type) {
-    case "ON_USER_DETAILS_FETCH": {
+    case ON_USER_DETAILS_FETCH: {
       return Object.assign({}, state, { [action.userName]: action.userDetails });
     }
     default :
@@ -69,10 +84,5 @@ export const userDetails = (state=INITIAL_STATE.userDetails, action) => {
   }
 };
 
-export const root = combineReducers({
-  selected,
-  repos,
-  userDetails
-});
-
+export const root = combineReducers({ selected, repos, userDetails });
 export default root;
