@@ -8,8 +8,7 @@ html {
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
-  color: #666;
+  font-family: sans-serif;  
 }
 
 /* Common css utils */
@@ -47,5 +46,3 @@ body {
 .container .section.large:nth-child(n + 1) {
   padding: 10px 0;
 }
-
-

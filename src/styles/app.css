@@ -5,3 +5,11 @@
   margin: 0 auto;
   margin-bottom: 20px;
 }
+
+.theme-selector {
+  padding: 10px 15px 5px;
+}
+
+.theme-selector .theme-label {
+  margin: 0 5px;
+}
