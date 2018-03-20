@@ -9,11 +9,11 @@ import injectSheet from 'react-jss'
 import '../styles/app.css';
 
 const appStyles = (theme) => ({
+  '@global body': {
+    background: theme.background
+  },
   app: {
-    color: theme.color,
-    background: theme.background,
-    width: "100vw",
-    height: "100vh"
+    color: theme.color
   }
 });
 
